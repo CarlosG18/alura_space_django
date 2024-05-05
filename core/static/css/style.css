@@ -147,6 +147,8 @@ table {
 .card__imagem {
     width: 450px;
     border-radius: 10px 10px 0 0;
+    max-height: 265px;
+    object-fit: cover;
 }
 
 .card__tag {

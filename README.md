@@ -1,6 +1,6 @@
 # alura_space_django
 
-> Realizando o curso Django: Templates e boas práticas, Persistência de dados e Admin - alura
+> Realizando os cursos de Django da Alura: Templates e boas práticas, Persistência de dados e Admin.
 
 **Tecnologias Ultilizadas**: 
 - ![django-logo](https://img.shields.io/badge/django-5.0.4-228B22?style=for-the-badge&logo=django&logoColor=white&labelColor=228B22)
