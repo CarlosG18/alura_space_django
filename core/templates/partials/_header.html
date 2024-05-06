@@ -3,9 +3,11 @@
 <header class="cabecalho">
     <img src="{% static 'img/logo/Logo(2).png' %}" alt="Logo da Alura Space" />
     <div class="cabecalho__busca">
-        <div class="busca__fundo">
-            <input class="busca__input" type="text" placeholder="O que você procura?">
-            <img class="busca__icone" src="{% static 'img/ícones/1x/search.png' %}" alt="ícone de search">
-        </div>
+        <form class="busca__fundo" action="{% url 'galeria:buscar' %}">
+            <input class="busca__input" name="buscar" type="text" placeholder="O que você procura?">
+            <button type="submit">
+                <img class="busca__icone" src="{% static 'img/ícones/1x/search.png' %}" alt="ícone de search">
+            </button>
+        </form>        
     </div>
 </header>

@@ -15,3 +15,17 @@ def detail(request, pk):
     return render(request, 'imagem.html', {
         "fotografia": fotografia,
     })
+
+def buscar(request):
+    all_fotografias = Fotografia.objects.order_by("-data").filter(publicada=True)
+    if "buscar" in request.GET:
+        palavra_search = request.GET['buscar']
+        if palavra_search:
+            fotografias_buscada = all_fotografias.filter(nome__icontains=palavra_search)
+        else:
+            fotografias_buscada = ""
+
+    return render(request, 'buscar.html', {
+        "fotos": fotografias_buscada,
+        "palavra_buscada": palavra_search,
+    })
