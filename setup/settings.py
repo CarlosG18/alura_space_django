@@ -137,3 +137,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # trabalhando com SSL - HTTPS
 #SECURE_SSL_REDIRECT = True
 #SESSION_COOKIE_SECURE = True
+
+LOGIN_REDIRECT_URL = 'galeria:index'
+LOGOUT_REDIRECT_URL = 'usuarios:login'

@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block conteudo %}
-<form action="" method="">
+<form action="{% url 'usuarios:cadastro' %}" method="post">
     {% csrf_token %}
     <div class="row">
         {% for field in cadastro_form.visible_fields %}
@@ -34,8 +34,10 @@
         </div>
         -->
     </div>
+    {% include 'partials/_alert.html' %}
     <div class="col-12 text-center">
         <button class="btn btn-success col-12" style="padding: top 5px;" type="submit">Criar sua conta</button>
     </div>
+    
 </form>
 {% endblock %}

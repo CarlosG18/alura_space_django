@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Fotografia
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+#@login_required
 def index(request):
     all_fotografias = Fotografia.objects.order_by("-data").filter(publicada=True)
     tipos_categoria = Fotografia._meta.get_field('categoria').choices
@@ -10,12 +12,14 @@ def index(request):
         "categorias": tipos_categoria,
     })
 
+#@login_required
 def detail(request, pk):
     fotografia = get_object_or_404(Fotografia, pk=pk)
     return render(request, 'galeria/imagem.html', {
         "fotografia": fotografia,
     })
 
+#@login_required
 def buscar(request):
     all_fotografias = Fotografia.objects.order_by("-data").filter(publicada=True)
     if "buscar" in request.GET:

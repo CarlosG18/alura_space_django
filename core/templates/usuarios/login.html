@@ -4,7 +4,7 @@
 
 {% block conteudo %}
 <section class="galeria" style="margin-left: 5em">
-    <form action="" method="">
+    <form action="{% url 'usuarios:login' %}" method="post">
         {% csrf_token %}
         <div class="row">
             {% for field in login_form.visible_fields %}
@@ -27,6 +27,7 @@
             </div>
             -->
         </div>
+        {% include 'partials/_alert.html' %}
         <div class="col-12 text-center">
             <button class="btn btn-success col-12" style="padding: top 5px;" type="submit">Logar</button>
         </div>
