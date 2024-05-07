@@ -5,6 +5,6 @@ app_name='galeria'
 
 urlpatterns = [
     path('', views.index, name="index"),
-    path('<int:pk>/', views.detail, name="detail"),
+    path('imagem/<int:pk>/', views.detail, name="detail"),
     path('buscar', views.buscar, name="buscar"),
 ]

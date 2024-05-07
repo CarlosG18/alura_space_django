@@ -5,14 +5,14 @@ from .models import Fotografia
 def index(request):
     all_fotografias = Fotografia.objects.order_by("-data").filter(publicada=True)
     tipos_categoria = Fotografia._meta.get_field('categoria').choices
-    return render(request, 'index.html', {
+    return render(request, 'galeria/index.html', {
         "fotos": all_fotografias,
         "categorias": tipos_categoria,
     })
 
 def detail(request, pk):
     fotografia = get_object_or_404(Fotografia, pk=pk)
-    return render(request, 'imagem.html', {
+    return render(request, 'galeria/imagem.html', {
         "fotografia": fotografia,
     })
 
@@ -25,7 +25,7 @@ def buscar(request):
         else:
             fotografias_buscada = ""
 
-    return render(request, 'buscar.html', {
+    return render(request, 'galeria/buscar.html', {
         "fotos": fotografias_buscada,
         "palavra_buscada": palavra_search,
     })
