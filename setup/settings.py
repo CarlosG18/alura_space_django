@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.galeria.apps.GaleriaConfig',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'core/static/img/')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# configs de segurança 
+# trabalhando com SSL - HTTPS
+#SECURE_SSL_REDIRECT = True
+#SESSION_COOKIE_SECURE = True
