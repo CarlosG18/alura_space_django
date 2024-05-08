@@ -1,10 +1,15 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Fotografia
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
 #@login_required
 def index(request):
+    if not request.user.is_authenticated:
+        messages.error(request, "você precisa está logado para acessar a home do nosso site!")
+        return redirect('usuarios:login')
+    
     all_fotografias = Fotografia.objects.order_by("-data").filter(publicada=True)
     tipos_categoria = Fotografia._meta.get_field('categoria').choices
     return render(request, 'galeria/index.html', {
@@ -14,6 +19,10 @@ def index(request):
 
 #@login_required
 def detail(request, pk):
+    if not request.user.is_authenticated:
+        messages.error(request, "você precisa está logado para acessar o nosso site!")
+        return redirect('usuarios:login')
+
     fotografia = get_object_or_404(Fotografia, pk=pk)
     return render(request, 'galeria/imagem.html', {
         "fotografia": fotografia,
@@ -21,6 +30,10 @@ def detail(request, pk):
 
 #@login_required
 def buscar(request):
+    if not request.user.is_authenticated:
+        messages.error(request, "você precisa está logado para acessar o nosso site!")
+        return redirect('usuarios:login')
+
     all_fotografias = Fotografia.objects.order_by("-data").filter(publicada=True)
     if "buscar" in request.GET:
         palavra_search = request.GET['buscar']

@@ -1,7 +1,8 @@
 {% load static %}
 
-<header class="cabecalho">
+<header class="cabecalho d-flex align-items-center">
     <img src="{% static 'img/logo/Logo(2).png' %}" alt="Logo da Alura Space" />
+    {% include 'partials/_alert.html' %}
     <div class="cabecalho__busca">
         <form class="busca__fundo" action="{% url 'galeria:buscar' %}">
             <input class="busca__input" name="buscar" type="text" placeholder="O que você procura?">

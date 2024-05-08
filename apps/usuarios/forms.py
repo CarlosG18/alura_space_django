@@ -71,4 +71,25 @@ class CadastroForm(forms.Form):
             }
         ),
     )
+
+    def clean_nome(self):
+        nome = self.cleaned_data.get('nome')
+        
+        if nome:
+            nome = nome.strip()
+            if " " in nome:
+                raise forms.ValidationError("Nome não pode possuir espaços!")
+            else:
+                return nome
+
+    def clean_senha_confirmar(self):
+        senha = self.cleaned_data.get('senha')
+        senha_confirmar = self.cleaned_data.get('senha_confirmar')
+
+        if senha and senha_confirmar:
+             
+            if senha != senha_confirmar:
+                raise forms.ValidationError("senhas são incompativeis!")
+            else:
+                return senha_confirmar
     

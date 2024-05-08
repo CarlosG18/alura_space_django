@@ -10,8 +10,8 @@ def login(request):
         login_form = LoginForm(request.POST)
 
         if login_form.is_valid():
-            nome = login_form.cleaned_data['nome']
-            senha = login_form.cleaned_data['senha']
+            nome = login_form['nome'].value()
+            senha = login_form['senha'].value()
 
             usuario = auth.authenticate(
                 request,
@@ -20,7 +20,6 @@ def login(request):
             )
             if usuario is not None:
                 auth.login(request, usuario)
-                messages.success(request, "Login efetuado com sucesso!")
                 return redirect('galeria:index')
             else:
                 messages.error(request, "Usuario ou senha incorretos!")
@@ -36,24 +35,12 @@ def login(request):
 
 def cadastro(request):
     if request.method == "POST":
-        #data = {
-            #"nome": request.POST['nome'],
-            #"email": request.POST['email'],
-            #"senha": request.POST['senha'],
-            #"senha_confirmar": request.POST['senha_confirmar'],
-        #}
-    
-        #cadastro_form = CadastroForm(data=data)
         cadastro_form = CadastroForm(request.POST)
 
         if cadastro_form.is_valid():
-            if cadastro_form.cleaned_data['senha'] != cadastro_form.cleaned_data['senha_confirmar']:
-                messages.error(request, "senhas são incompativeis!")
-                return redirect('usuarios:cadastro')
-        
-            nome = cadastro_form.cleaned_data['nome']
-            email = cadastro_form.cleaned_data['email']
-            senha = cadastro_form.cleaned_data['senha']
+            nome = cadastro_form['nome'].value()
+            email = cadastro_form['email'].value()
+            senha = cadastro_form['senha'].value()
 
             if User.objects.filter(username=nome).exists():
                 messages.error(request, "username já existente!")
@@ -63,10 +50,6 @@ def cadastro(request):
             user.save()
             messages.success(request, "Usuario criado com sucesso!")
             return redirect('usuarios:login')
-
-        else:
-            messages.error(request, "Não foi possivel realizar o cadastro!")      
-            return redirect('usuarios:cadastro')
 
     else:
         cadastro_form = CadastroForm()
