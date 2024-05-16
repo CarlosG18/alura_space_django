@@ -1,17 +1,37 @@
-{% extends '../base.html' %}
+{% extends '../shared/base.html' %}
 
 {% load static %}
+
+{% block style %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+{% endblock %}
 
 {% block conteudo %}
     <section class="conteudo">
         <section class="imagem">
             <div class="imagem__conteudo">
-                <img class="imagem__imagem" src="{{ fotografia.foto.url }}">
+                {% if fotografia.foto %}
+                    <img class="imagem__imagem" src="{{ fotografia.foto.url }}">
+                {% else %}
+                    <div class="col-12 text-center" style="margin-bottom: 10px;">
+                            <div class="alert alert-danger" role="alert">
+                                A fotografia não possui foto cadastrada no nosso sistema!
+                            </div>
+                    </div>
+                {% endif %}
                 <div class="imagem__info">
                     <div class="imagem__texto">
                         <p class="imagem__titulo">{{ fotografia.nome }}</p>
                         <p class="imagem__descricao">{{ fotografia.data }}</p>
                         <p class="imagem__texto">{{ fotografia.descricao }}</p>
+                    </div>
+                    <div class="imagem__texto">
+                        <div class="mb-3">
+                           <a href="{% url 'galeria:editar_foto' fotografia.id %}"><button class="btn btn-success col-12" style="padding: top 5px;" >editar foto</button></a>
+                        </div>
+                        <div>
+                            <a href="{% url 'galeria:deletar_foto' fotografia.id %}"><button class="btn btn-danger col-12" style="padding: top 5px;">deletar foto</button></a>
+                        </div>
                     </div>
                 </div>
             </div>

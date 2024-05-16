@@ -1,4 +1,4 @@
-{% extends '../base.html' %}
+{% extends '../shared/base.html' %}
 
 {% load static %}
 
@@ -14,7 +14,7 @@
             <p class="tags__titulo">Busque por tags:</p>
             <ul class="tags__lista">
                 {% for categoria in categorias %}
-                    <li class="tags__tag">{{ categoria.1|capfirst }}</li>
+                    <li class="tags__tag"><a href="{% url 'galeria:filtro_cat' categoria.0 %}" class="btn" style="color: #c9c9c9;">{{ categoria.1|capfirst }}</a></li>
                 {% endfor %}
             </ul>
         </section>
@@ -45,7 +45,11 @@
                             </li>
                         {% endfor %}
                     {% else %}
-                        <li>Não possuimos fotos neste momento!</li>
+                        {% if buscar %}
+                            <li style="color: white">Não foram encontrados fotografias com a palavra chave <b>"{{ palavra_buscada }}"</b>!</li>
+                        {% else %}
+                            <li style="color: white">Não possuimos fotos neste momento!</li>
+                        {% endif %}
                     {% endif %}
                 </ul>
             </div>

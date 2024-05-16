@@ -7,10 +7,11 @@
 {% endblock %}
 
 {% block conteudo %}
-<form action="{% url 'usuarios:cadastro' %}" method="post">
+    {% include '../partials/_alert.html' %}
+   <form action="{% url 'galeria:editar_foto' img_id %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="row">
-        {% for field in cadastro_form.visible_fields %}
+        {% for field in form.visible_fields %}
             <div class="col-12 col-lg-12" style="margin-bottom: 10px;">
                 <label for="{{field.id_for_label}}" style="color:#D9D9D9; margin-bottom: 5px;"><b>{{field.label}}</b></label>
                 {{field}}
@@ -23,7 +24,7 @@
         {% endfor %}
     </div>
     <div class="col-12 text-center">
-        <button class="btn btn-success col-12" style="padding: top 5px;" type="submit">Criar sua conta</button>
+        <button class="btn btn-success col-12" style="padding: top 5px;" type="submit">editar foto</button>
     </div>
     
 </form>
