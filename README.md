@@ -23,4 +23,4 @@ O objetivo principal deste Tutorial é aprender a como ultilizar de uma forma co
 
 Observe este CRUD de aplicação em funcionamento.
 
-- o **CRUD_django** pode ser acessado [🔗 por aqui]()
+- o **alura_space_django** pode ser acessado [🔗 por aqui](https://aluraspace.pythonanywhere.com/)
