@@ -19,3 +19,9 @@ Será desenvolvido um simples sistema de catálogo de elementos presentes no esp
 ## 🎯 Objetivo
 
 O objetivo principal deste Tutorial é aprender a como ultilizar de uma forma correta e usando boas práticas os templates do django, trabalhar com forms, autenticação de usuários, CRUD, persistência de dados no S3, além de dicas de boas práticas de segurança para se usar em projetos **Django**.
+
+## 🌐 Deploy
+
+Observe este CRUD de aplicação em funcionamento.
+
+- o **CRUD_django** pode ser acessado [🔗 por aqui]()
